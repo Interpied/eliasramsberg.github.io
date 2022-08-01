@@ -1,3 +1,5 @@
 theme: jekyll-theme-cayman
 title: Elias Ramsberg
 description: director's cut
+github:
+  is_project_page: false
