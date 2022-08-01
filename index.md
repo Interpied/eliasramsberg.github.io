@@ -1,4 +1,4 @@
-## Welcome to GitHub Pages
+## Elias Ramsberg
 
 You can use the [editor on GitHub](https://github.com/Interpied/eliasramsberg.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
@@ -20,7 +20,7 @@ Markdown is a lightweight and easy-to-use syntax for styling your writing. It in
 
 **Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
+[Link](youtube.com) and ![Image](src)
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
