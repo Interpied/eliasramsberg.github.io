@@ -1,7 +1,12 @@
 theme: jekyll-theme-cayman
+<<<<<<< HEAD
 title: "Elias Ramsberg"
 description: director's cut
 
 domain: eliasramsberg.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
 url: https://eliasramsberg.github.io  # the base hostname and protocol for your site, e.g. http://example.com
 baseurl: /eliasramsberg.se/      # place folder name if the site is served in a subfolder
+=======
+title: Elias Ramsberg
+description: director is cut
+>>>>>>> 6b9bfd594646b65603d7e67cb97c2b275f156399
