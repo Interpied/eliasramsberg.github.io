@@ -78,6 +78,15 @@ button:hover{
     text-align: center;
     padding-top: 10%;
 }
+    .content > img {
+        width: 30%;
+        height: auto;
+    }
+    
+    .content > button {
+        border-radius: 0px;
+        padding: 0;
+    }
 
 h1 {
     color: rgba(162, 227, 183, 1);
