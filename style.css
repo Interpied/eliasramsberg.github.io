@@ -23,6 +23,12 @@ header {
     background-color: #36383F;
 }
 
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 .logo{
     width: 28%;
     height: auto;
@@ -157,4 +163,23 @@ h1 {
 .desc {
     padding: 15px;
     text-align: center;
+}
+
+.instructions{
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    padding-top: 10%;
+    padding-left: 20%;
+}
+
+footer{
+    padding: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    text-align: center;
+    background: #36383F;
+    color: rgba(162, 227, 183, 1);
+    font-family: Arial;
+    letter-spacing: 1px;
+    margin-top: auto;
 }
