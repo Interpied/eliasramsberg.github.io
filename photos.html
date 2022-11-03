@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Elias Ramsberg</title>
+    <meta name="description" content="director's cut">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <header>
+        <a href="/" class="logo"> 
+          <img class="logo" src="ramsberglogo001.png" alt="navbarlogo">
+        </a>
+        <nav>
+          <ul class="nav_links">
+            <li><a href="photos">Photos</a></li>
+            <li><a href="portfolio">Portfolio</a></li>
+            <li><a href="projects">Projects</a></li>
+          </ul>
+        </nav>
+        <a class="headerbutton" href="contact"><button>Contact</button></a>
+      </header>
+
+      <div class="content">
+        <h1>Gallery<br></br></h1>
+        <div id="photogallery">
+  
+          <img src="images/IMG_1163.JPG">
+          <img src="images/IMG_1177.JPG">
+          <img src="images/IMG_1191.JPG">
+          <img src="images/IMG_1192.JPG">
+          <img src="images/IMG_1193.JPG">
+          <img src="images/IMG_1194.JPG">
+          <img src="images/IMG_1198.JPG">
+          <img src="images/IMG_1201.JPG">
+          <img src="images/IMG_1204.JPG">
+          <img src="images/IMG_1208.JPG">
+          <img src="images/IMG_1209.JPG">
+          <img src="images/IMG_1214.JPG">
+          <img src="images/IMG_1216.JPG">
+          <img src="images/IMG_1215.JPG">
+          <img src="images/IMG_1219.JPG">
+          <img src="images/IMG_1220.JPG">
+          <img src="images/IMG_1223.JPG">
+          <img src="images/IMG_1224.JPG">
+          <img src="images/IMG_1225.JPG">
+          <img src="images/IMG_1226.JPG">
+          <img src="images/IMG_1227.JPG">
+          <img src="images/IMG_1232.JPG">
+          <img src="images/IMG_1234.JPG">
+          <img src="images/IMG_1235.JPG">
+          <img src="images/IMG_1237.JPG">
+          <img src="images/IMG_1238.JPG">
+          <img src="images/IMG_1239.JPG">
+          <img src="images/IMG_1241.JPG">
+          <img src="images/IMG_1243.JPG">
+          <img src="images/IMG_1244.JPG">
+          <img src="images/IMG_1248.JPG">
+          <img src="images/IMG_1250.JPG">
+          <img src="images/IMG_1251.JPG">
+          <img src="images/IMG_1254.JPG">
+          <img src="images/IMG_1255.JPG">
+          <img src="images/IMG_1256.JPG">
+          <img src="images/IMG_1257.JPG">
+          <img src="images/IMG_1258.JPG">
+          <img src="images/IMG_1259.JPG">
+          <img src="images/IMG_1260.JPG">
+          <img src="images/IMG_1262.JPG">
+          <img src="images/IMG_1264.JPG">
+          <img src="images/IMG_1265.JPG">
+          <img src="images/IMG_1272.JPG">
+          <img src="images/IMG_1273.JPG">
+          <img src="images/IMG_1276.JPG">
+          <img src="images/IMG_1279.JPG">
+          <img src="images/IMG_1281.JPG">
+          <img src="images/IMG_1286.JPG">
+          <img src="images/IMG_1287.JPG">
+          <img src="images/IMG_1288.JPG">
+          <img src="images/IMG_1289.JPG">
+          <img src="images/IMG_1290.JPG">
+          <img src="images/IMG_1292.JPG">
+          <img src="images/IMG_1297.JPG">
+          <img src="images/IMG_1298.JPG">
+          <img src="images/IMG_1302.JPG">
+          <img src="images/IMG_1305.JPG">
+          <img src="images/IMG_1309.JPG">
+          <img src="images/IMG_1312.JPG">
+          <img src="images/IMG_1313.JPG">
+          <img src="images/IMG_1318.JPG">
+          <img src="images/IMG_1319.JPG">
+          <img src="images/IMG_1320.JPG">
+          <img src="images/IMG_1322.JPG">
+          <img src="images/IMG_1323.JPG">
+          <img src="images/IMG_1325.JPG">
+          <img src="images/IMG_1326.JPG">
+          <img src="images/IMG_1327.JPG">
+          <img src="images/IMG_1328.JPG">
+          <img src="images/IMG_1329.JPG">
+          <img src="images/IMG_1340.JPG">
+          <img src="images/IMG_1349.JPG">
+          <img src="images/IMG_1350.JPG">
+          <img src="images/IMG_1376.JPG">
+          <img src="images/IMG_1377.JPG">
+          <img src="images/IMG_1382.JPG">
+          <img src="images/IMG_1383.JPG">
+          <img src="images/IMG_1384.JPG">
+          <img src="images/IMG_1387.JPG">
+          <img src="images/IMG_1388.JPG">
+          <img src="images/IMG_1392.JPG">
+          <img src="images/IMG_1394.JPG">
+          <img src="images/IMG_1395.JPG">
+          <img src="images/IMG_1397.JPG">
+          <img src="images/IMG_1400.JPG">
+          <img src="images/IMG_1401.JPG">
+          
+
+         
+         </div>
+      </div>
+
+      <footer>director's cut</footer>
+
+      <script>
+        let darkBoxVisible = false;
+    
+        window.addEventListener('load', (event) => {
+          let images = document.querySelectorAll("img");
+          if(images !== null && images !== undefined && images.length > 0) {
+            images.forEach(function(img) {
+              img.addEventListener('click', (evt) => {
+                showDarkbox(img.src);
+              });
+            });
+          }
+        });
+    
+        function showDarkbox(url) {
+          if(!darkBoxVisible) {
+            let x = (window.innerWidth - 1280) / 2;
+            let y = window.scrollY + 50;
+    
+            // Create the darkBox
+            var div = document.createElement("div");
+            div.id = "darkbox";
+            div.innerHTML = '<img class="darkboximg" src="'+url+'" />';
+            document.body.appendChild(div);
+            let box = document.getElementById("darkbox");
+            box.style.left = x.toString()+"px";
+            box.style.top = y.toString()+"px";
+            box.style.height = 'auto';
+            box.addEventListener('click', (event) => {
+              // Remove it
+              let element = document.getElementById("darkbox");
+              element.parentNode.removeChild(element);
+    
+              darkBoxVisible = false;
+            })
+    
+            darkBoxVisible = true;
+    
+          } else {
+            // Remove it
+            let element = document.getElementById("darkbox");
+            element.parentNode.removeChild(element);
+    
+            darkBoxVisible = false;
+          }
+        }
+        </script>
+  </body>
+</html>
