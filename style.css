@@ -94,6 +94,10 @@ button:hover{
         padding: 0;
     }
 
+#startpage {
+    width: 50px;
+}
+
 h1 {
     color: rgba(162, 227, 183, 1);
 }
