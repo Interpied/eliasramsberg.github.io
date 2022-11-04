@@ -280,3 +280,9 @@ footer{
     font-size: 188px;
     color:#36383F;
 }
+
+#versionundertext{
+    margin-top: 20px;
+    color: #4e4e4e;
+    font-style: italic;
+}
