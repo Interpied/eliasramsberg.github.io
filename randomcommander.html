@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body onload="getNewCard()">
+
       <header>
         <a href="/" class="logo"> 
           <img class="logo" src="ramsberglogo001.png" alt="navbarlogo">
@@ -25,30 +26,17 @@
         <a class="headerbutton" href="contact"><button class="buttontext">Contact</button></a>
       </header>
 
-      <!--div class="content">
-        <h1>Welcome<br></br></h1>
-        <h2>website is WIP</h2>
-      </div-->
-
-      <!--div id="cover">
-        <img src="startmenu_ps.jpg">
-        <img src="startmenu_photo.jpg">
-        <img src="startmenu_gamedev.jpg">
-        <img src="startmenu_code.jpg">
-      </div-->
-  
-      <!--div id="cover">
-        <img src="startmenu_photo.jpg">
-        <img src="startmenu_photo.jpg">
-        <img src="startmenu_photo.jpg">
-        <img src="startmenu_photo.jpg">
-      </div-->
-
       <div class="content" id="randomcommandercontent">
         <div>
             <div class="flip-card">
-                <img src="images/cardback.png" alt="Commander" class="cardInfo__img" id="cardInfo_img"/>
+                <img src="/images/cardback.png" alt="Commander" class="cardInfo__img" id="cardInfo_img"/>
             </div>
+        </div>
+        <div class="cardDetails">
+            <div>
+                <h2 class="cardDetails__name"  id="rndbutton">Norin the Wary</h2>
+            </div>
+            <button class="cardDetails__randomCardBtn btn" id="rndbutton">Random</button>
         </div>
       </div>
 
@@ -59,7 +47,7 @@
         const edhRec = document.querySelector('.cardDetails__edhRec');
         const img = document.querySelector('.cardInfo__img');
         const name = document.querySelector('.cardDetails__name');
-        const SCRYFALL_URL = 'https://api.scryfall.com/cards/random';
+        const SCRYFALL_URL = 'https://api.scryfall.com/cards/random?q=is%3Acommander';
 
         const handleErrors = (err) => {
             console.log('Oh no, something went wrong!');
@@ -72,6 +60,12 @@
             return data;
         };
 
+        const checkCommanderLegality = async (card) => {
+            if (card.legalities.commander === 'not_legal') {
+                getNewCard();
+            }
+        };
+
         const showCard = async (card) => {
             img.src = card.image_uris.png;
             name.textContent = card.name;
@@ -81,8 +75,11 @@
 
         const getNewCard = async () => {
             const newCard = await fetchCard().catch(handleErrors);
+            await checkCommanderLegality(newCard).catch(handleErrors);
             await showCard(newCard).catch(handleErrors);
         };
+
+        BTN.addEventListener('click', getNewCard);
       </script>
   </body>
 </html>

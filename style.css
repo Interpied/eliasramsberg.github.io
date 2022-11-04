@@ -75,6 +75,10 @@ button{
     background-color: #36383F;
 }
 
+.buttontext {
+    color: black;
+}
+
 button:hover{
     background-color: rgba(162, 227, 183, 0.8);
 }
@@ -254,4 +258,19 @@ footer{
         -webkit-column-count: 1;
         column-count:         1;
     }
+}
+
+#cardInfo_img {
+    width: 20%;
+    height: auto;
+}
+
+#randomcommandercontent{
+    padding-top: 5%;
+}
+
+#rndbutton{
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-left: auto;
 }
