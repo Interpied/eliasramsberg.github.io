@@ -274,3 +274,8 @@ footer{
     margin-bottom: auto;
     margin-left: auto;
 }
+
+#version{
+    font-size: 188px;
+    color:#36383F;
+}
