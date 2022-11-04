@@ -188,69 +188,70 @@ footer{
     margin-top: auto;
 }
 
+#darkbox { 
+    position:absolute;	
+    top:0; 
+    left:0; 
+    background-color:#36383F; 
+    overflow: hidden; 
+    text-align:center; 
+    width: 50%;
+    padding-top: 5%;
+}
+.darkboximg { padding:2% 2% 2% 2%; }
+.fullsizelink { 
+    margin-bottom:2rem;
+    margin-top: 2%;
+    background-color: #36383F;
+ }
+.fullsizelink a {
+    color:white; 
+    background-color: #36383F;
+}
+
+
 #photogallery {
     line-height:0;
-    -webkit-column-count:5; /* split it into 5 columns */
-    -webkit-column-gap:5px; /* give it a 5px gap between columns */
+    -webkit-column-count:5;
+    -webkit-column-gap:5px;
     -moz-column-count:5;
     -moz-column-gap:5px;
     column-count:5;
     column-gap:5px;
-    margin-left: 50px;
-    margin-right: 50px;
- }
-
- #photogallery img {
-    width: 100% !important;
-    height: auto !important;
-    margin-bottom:5px; /* to match column gap */
- }
-
- @media (max-width: 1200px) {
-    #photogallery {
-     -moz-column-count:    4;
-     -webkit-column-count: 4;
-     column-count:         4;
-    }
- }
-
- @media (max-width: 1000px) {
-    #photogallery {
-     -moz-column-count:    3;
-     -webkit-column-count: 3;
-     column-count:         3;
-    }
- }
-
- @media (max-width: 800px) {
-    #photogallery {
-     -moz-column-count:    2;
-     -webkit-column-count: 2;
-     column-count:         2;
-    }
- }
-
- @media (max-width: 400px) {
-    #photogallery {
-     -moz-column-count:    1;
-     -webkit-column-count: 1;
-     column-count:         1;
-    }
- }
-
- #darkbox { 
-    width:1280px; 
-    height:900px; 
-    position:absolute; 
-    top:0; 
-    left:0; 
-    background-color:#333; 
-    overflow: hidden; 
-    text-align:center;
+    margin-top:2rem;
 }
 
-.darkboximg { 
-    padding:1%;
-    max-width: 1216px; 
-    max-height: 855px; 
+#photogallery img {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom:5px;
+}
+
+@media (max-width: 1200px) {
+    #photogallery {
+        -moz-column-count:    4;
+        -webkit-column-count: 4;
+        column-count:         4;
+    }
+}
+@media (max-width: 1000px) {
+    #photogallery {
+        -moz-column-count:    3;
+        -webkit-column-count: 3;
+        column-count:         3;
+    }
+}
+@media (max-width: 800px) {
+    #photogallery {
+        -moz-column-count:    2;
+        -webkit-column-count: 2;
+        column-count:         2;
+    }
+}
+@media (max-width: 400px) {
+    #photogallery {
+        -moz-column-count:    1;
+        -webkit-column-count: 1;
+        column-count:         1;
+    }
 }
