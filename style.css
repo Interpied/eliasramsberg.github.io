@@ -75,13 +75,20 @@ button{
     background-color: #36383F;
 }
 
+#homebutton{
+    width: 10%;
+    height: 10%;
+    background-color:rgba(162, 227, 183, 1)
+}
+
 .buttontext {
     color: black;
 }
 
-button:hover{
+/*button:hover{
     background-color: rgba(162, 227, 183, 0.8);
-}
+    color: rgba(255, 255, 255, 0.8)
+}*/
 
 .content {
     font-family: 'Roboto', sans-serif;
@@ -285,4 +292,88 @@ footer{
     margin-top: 20px;
     color: #4e4e4e;
     font-style: italic;
+}
+
+.tabs{
+    width: 80%;
+    margin:auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.tabs-col{
+    flex-basis: 40%;
+    border-radius: 10px;
+    margin-bottom: 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tabs-col img{
+    border-radius: 15px;
+    width: 68%;
+    box-shadow: 1px 0px 4px;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+
+.layer{
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+
+.layer:hover{
+    fill: rgba(255, 255, 255, 0.5);
+}
+
+.layer h3{
+    width: 60%;
+    font-weight: 500;
+    color: #fff;
+    font-size: 26px;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 5px solid;
+    border-radius: 10px;
+    border-color: rgba(255,255, 255, 0.5);
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: 2px 5px 5px;
+    color: black;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+
+#indexbox{
+    margin-top: 2%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+#indextab{
+    float:left; 
+    background:Red;
+    width:25%;
+    height:280px;
+}
+
+#indextab img {
+
+    border-radius: 15px;
+    width: 1000%;
+    box-shadow: 1px 0px 4px;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
 }
