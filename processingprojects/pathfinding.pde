@@ -121,6 +121,7 @@ void draw()
   }
   else moveIdle();
   drawBoat();
+  bounceBoat();
 }
 
 void moveBoat() {
@@ -158,8 +159,29 @@ void drawBoat() {
   ellipse(shipPos.x, shipPos.y, shipSize, shipSize);
 }
 
-
-
+void bounceBoat(){
+    // bounce
+    if (shipPos.x > width)
+    {
+      shipPos.x = width;
+      dir.x *= -1;
+    }
+    if (shipPos.y > height)
+    {
+      shipPos.y = height;
+      dir.y *= -1;
+    }
+    if (shipPos.x < 0)
+    {
+      shipPos.x = 0;
+      dir.x *= -1;
+    }
+    if (shipPos.y < 0)
+    {
+      shipPos.y = 0;
+      dir.y *= -1;
+    }
+}
 
 class Flag
 {
