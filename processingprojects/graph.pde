@@ -9,7 +9,7 @@ boolean darkMode;
 //float redrawPointsDelay;
 
 void setup(){
- size (1280, 720);
+ size (960, 540);
  //fullScreen();
  noStroke();
  lineIndex = 0;

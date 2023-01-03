@@ -38,10 +38,10 @@ float maxHeight;
 
 void setup() {
   //if (circles.get(10000).x < 0) println("hi");
-  size(1280, 720);
+  size(960, 540);
   //fullScreen();
   ellipseMode(RADIUS);
-  frameRate(45);
+  frameRate(30);
   noStroke();
   
   circles.add(new PVector(width / 2, height / 2));
@@ -70,9 +70,9 @@ void setup() {
   baseSizeDelay = 50;
   
   foodAmount = 8;
-  foodSize = 30;
-  minHeight = 300;
-  maxHeight = 400;
+  foodSize = 20;
+  minHeight = 150;
+  maxHeight = 250;
   
   rectSize = width / 10; // Background square size
   
@@ -124,13 +124,6 @@ void draw() {
 
     if (distFoodToSnake < closestFood || closestFood == 0) closestFood = distFoodToSnake;
 
-    if (distFoodToSnake < 50) {
-      food.remove(i);
-      snakeLength += 3;
-      if (foodAmount > food.size())
-      addFood(0,0);
-    }
-
     /*int minCap = 155;
     food.get(i).z += -5 + random(10);
     if (food.get(i).z > 255) food.get(i).z = 255;
@@ -145,6 +138,15 @@ void draw() {
     ellipse(food.get(i).x, food.get(i).y, foodSize * spacingToShadowSize, foodSize * (spacingToShadowSize / 2));
     //fill(0, 200, 0, food.get(i).z);
     food.get(i).z = spacing;
+    
+    
+    if (distFoodToSnake < 50) {
+      food.remove(i);
+      snakeLength += 3;
+      if (foodAmount > food.size())
+      addFood(0,0);
+    }
+    
   }
   for (int i = 0; i < food.size(); i++) {
     fill(0, 200, 0);

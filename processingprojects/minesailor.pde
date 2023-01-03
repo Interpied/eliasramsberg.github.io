@@ -1,16 +1,10 @@
 // create an array of Flag objects
 ArrayList<Flag> theFlags = new ArrayList<Flag>();
-ArrayList<Mine> theMines = new ArrayList<Mine>();
-ArrayList<TempScoreText> tempScoreTexts = new ArrayList<TempScoreText>();
 
 // keep track of how many Flags we have already created
-int maxFlags = 100000;
+int maxFlags = 1000;
 int numFlags = 0;
 int currentFlag = 0;
-
-int maxMines = 1000;
-int numMines = 0;
-int currentMine = 0;
 
 /* removed the class block and any import statements */
 
@@ -28,11 +22,7 @@ float shipSpeedIdle = 500;
 PVector shipPos = new PVector(0, 0);
 PVector dir = new PVector(0, 0);
 
-float safeScore;
-float score;
-float scoreMultiplier = 3;
-boolean showTempScore;
-boolean fadeScore;
+boolean first = true;
 
 //float redrawPointsDelay;
 
@@ -43,20 +33,29 @@ void setup() {
   shipPos.x = width / 2;
   shipPos.y = height / 2;
   shipSpeed /= 1000;
-  shipSpeedIdle /= 1000;
-  scoreMultiplier /= 10000;
+    shipSpeedIdle /= 1000;
   
   dir = new PVector(shipPos.x, shipPos.y);
   dir.normalize();
-
-  theMines.add(new Mine(this, random(0, width), random(0, height)));
-  theMines.add(new Mine(this, random(0, width), random(0, height)));
-  theMines.add(new Mine(this, random(0, width), random(0, height)));
 }
 
 void mousePressed() {
   theFlags.add(new Flag(this, mouseX, mouseY));
-  if (theFlags.size() == 1) tempScoreTexts.add(new TempScoreText(this));
+
+  /*// increase to keep track of the next Flag
+   currentFlag++;
+   
+   // also increase our total Flags used, if necessary
+   if (numFlags < theFlags.size())
+   {
+   numFlags++;
+   }
+   
+   // did we just use our last slot? if so, we can reuse old slots
+   if (currentFlag >= theFlags.size())
+   {
+   currentFlag = 0;
+   }*/
 }
 
 void draw()
@@ -83,24 +82,27 @@ void draw()
   ////////// BALLLLLLLLSSSSSS /////////////
   /////////////////////////////////////////
 
-  // create a ball at this position
-  theBalls[ currentBall ] = new Ball(this, shipPos.x, shipPos.y);
-
-  // increase to keep track of the next ball
-  currentBall++;
-
-  // also increase our total balls used, if necessary
-  if (numBalls < theBalls.length)
+  if (true)
   {
-    numBalls++;
+    // create a ball at this position
+    theBalls[ currentBall ] = new Ball(this, shipPos.x, shipPos.y);
+
+    // increase to keep track of the next ball
+    currentBall++;
+
+    // also increase our total balls used, if necessary
+    if (numBalls < theBalls.length)
+    {
+      numBalls++;
+    }
+
+    // did we just use our last slot? if so, we can reuse old slots
+    if (currentBall >= theBalls.length)
+    {
+      currentBall = 0;
+    }
   }
 
-  // did we just use our last slot? if so, we can reuse old slots
-  if (currentBall >= theBalls.length)
-  {
-    currentBall = 0;
-  }
-  
   // move and draw all balls that have been created
   for (int i = 0; i < numBalls; i++)
   {
@@ -109,23 +111,17 @@ void draw()
     theBalls[i].display();
   }
 
-  // move and draw all balls that have been created
-  for (int i = 0; i < theMines.size(); i++)
-  {
-    theMines.get(i).move();
-    theMines.get(i).display();
-    theMines.get(i).checkCollision();
-  }
-
   //  draw boat  //
 
   if (theFlags.size() > 0) moveBoat();
+  else if (first == true){
+    first = false;
+    dir = new PVector(0, 0);
+    dir.normalize();
+  }
   else moveIdle();
-  
   drawBoat();
   bounceBoat();
-  
-  calculateScore();
 }
 
 void moveBoat() {
@@ -137,10 +133,7 @@ void moveBoat() {
   //  REMOVE FLAG IF TOO CLOSE  //
   while(dist(shipPos.x, shipPos.y, theFlags.get(0).x, theFlags.get(0).y) < shipSpeed){
         theFlags.remove(0);
-        if (theFlags.size() == 0) {
-          tempScoreTexts.get(tempScoreTexts.size()-1).fadeScore = true;
-          break;
-        }
+        if (theFlags.size() == 0) break;
   }
 }
 
@@ -188,43 +181,6 @@ void bounceBoat(){
       shipPos.y = 0;
       dir.y *= -1;
     }
-}
-
-void gameOver() {
-  score = 0;
-  for (int i = 0; i < theFlags.size(); i++){
-    theFlags.remove(0);
-  }
-  
-  fadeScore = false;
-  tempScoreTexts.clear();
-  safeScore = 0;
-}
-
-void calculateScore(){
-  float plannedTravelDistance = 0;
-  
-  //calculate the amount of distance already planned ahead for
-  for (int i = 0; i < theFlags.size(); i++){
-    if (i == 0) plannedTravelDistance += dist(shipPos.x, shipPos.y, theFlags.get(i).x, theFlags.get(i).y);
-    else {
-      plannedTravelDistance += dist(theFlags.get(i).x, theFlags.get(i).y, theFlags.get(i - 1).x, theFlags.get(i - 1).y);
-    }
-  }
-  // add to myscore of last TempScoreText
-  
-  if (tempScoreTexts.size() > 0) tempScoreTexts.get(tempScoreTexts.size()-1).myScore += plannedTravelDistance * scoreMultiplier;
- 
-  textAlign(RIGHT);
-  textSize(60);
-  fill(0, 408, 200);
-  text(round(safeScore), width - 20, 55);
-
-  for (int i = 0; i < tempScoreTexts.size(); i++){
-
-    tempScoreTexts.get(i).display();
-    if (tempScoreTexts.get(i).fadeScore == true) tempScoreTexts.get(i).fadeScore();
-  }
 }
 
 class Flag
@@ -396,133 +352,6 @@ class Ball
     } else
     {
       myAlpha = 0;
-    }
-  }
-}
-
-class Mine
-{
-  // instance vars
-  private float x;
-  private float y;
-  private float size;
-  private float myRed;
-  private float myGreen;
-  private float myBlue;
-  private float myAlpha;
-  private float speedX;
-  private float speedY;
-
-  // store a reference to the canvas
-  private PApplet canvas;
-
-  Mine(PApplet canvas, float x, float y)
-  {
-    // store a ref to the canvas
-    this.canvas = canvas;
-
-    // store x and y
-    this.x = x;
-    this.y = y;
-
-    // randomize our size
-    size = 30;
-
-    // randomize our color
-    myRed = 160;
-    myGreen = 0;
-    myBlue = 0;
-    myAlpha = 255;
-
-    // randomize our speed
-    speedX = this.canvas.random(1, 3);
-    speedY = this.canvas.random(1, 3);
-  }
-
-  // move our ball
-  void move()
-  {
-    // update position based on speed
-    x += speedX;
-    y += speedY;
-
-    // bounce
-    if (x > width)
-    {
-      x = width;
-      speedX *= -1;
-    }
-    if (y > height)
-    {
-      y = height;
-      speedY *= -1;
-    }
-    if (x < 0)
-    {
-      x = 0;
-      speedX *= -1;
-    }
-    if (y < 0)
-    {
-      y = 0;
-      speedY *= -1;
-    }
-  }
-
-  // display our ball
-  void display()
-  {
-    // use our reference to the canvas to draw our ball
-    this.canvas.noStroke();
-    this.canvas.fill(myRed, myGreen, myBlue, myAlpha);
-    this.canvas.ellipse(x, y, size, size);
-  }
-  
-  void checkCollision(){
-    if (dist(shipPos.x, shipPos.y, x, y) < 20){
-      gameOver();
-    }
-  }
-}
-
-class TempScoreText
-{
-  private float myScore = 0;
-  private boolean fadeScore;
-  float yFadeLocation;
-  
-  TempScoreText(PApplet canvas)
-  {
-
-  }
-
-  // move our ball
-  void move()
-  {
-
-  }
-
-  // display our ball
-  void display()
-  {
-    fill(255, 255, 255, 255);
-    textSize(40);
-    
-    String scoreString = str(round(myScore));
-    text("+"+scoreString, width - 20, 90 - yFadeLocation);
-  }
-  
-    
-  void fadeScore(){
-    yFadeLocation += 1;
-    
-    if (yFadeLocation >= 40){
-      fadeScore = false;
-      showTempScore = false;
-      yFadeLocation = 0;
-      
-      safeScore += round(myScore);      
-      tempScoreTexts.remove(0);
     }
   }
 }

@@ -11,7 +11,7 @@ int currentBall = 0;
 void setup() 
 {
 	// general setup
-	size (1280, 500);
+	size (960, 540);
 	smooth();
 }
 
