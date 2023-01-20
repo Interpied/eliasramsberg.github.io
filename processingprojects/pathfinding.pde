@@ -138,7 +138,7 @@ void moveBoat() {
   while(dist(shipPos.x, shipPos.y, theFlags.get(0).x, theFlags.get(0).y) < shipSpeed){
         theFlags.remove(0);
         if (theFlags.size() == 0) {
-          tempScoreTexts.get(tempScoreTexts.size()-1).fadeScore = true;
+          tempScoreTexts.get(tempScoreTexts.size()-1).fadeScoreBool = true;
           break;
         }
   }
@@ -211,19 +211,22 @@ void calculateScore(){
       plannedTravelDistance += dist(theFlags.get(i).x, theFlags.get(i).y, theFlags.get(i - 1).x, theFlags.get(i - 1).y);
     }
   }
+
   // add to myscore of last TempScoreText
-  
-  if (tempScoreTexts.size() > 0) tempScoreTexts.get(tempScoreTexts.size()-1).myScore += plannedTravelDistance * scoreMultiplier;
+  if (tempScoreTexts.size() > 0) {
+    tempScoreTexts.get(tempScoreTexts.size() - 1).myScore += plannedTravelDistance * scoreMultiplier;
+  }
  
   textAlign(RIGHT);
   textSize(60);
   fill(0, 408, 200);
   text(round(safeScore), width - 20, 55);
 
+  //  issue //
   for (int i = 0; i < tempScoreTexts.size(); i++){
 
     tempScoreTexts.get(i).display();
-    if (tempScoreTexts.get(i).fadeScore == true) tempScoreTexts.get(i).fadeScore();
+    tempScoreTexts.get(i).fadeScore();
   }
 }
 
@@ -488,7 +491,7 @@ class Mine
 class TempScoreText
 {
   private float myScore = 0;
-  private boolean fadeScore;
+  private boolean fadeScoreBool;
   float yFadeLocation;
   
   TempScoreText(PApplet canvas)
@@ -512,12 +515,14 @@ class TempScoreText
     text("+"+scoreString, width - 20, 90 - yFadeLocation);
   }
   
-    
   void fadeScore(){
+
+    if (!fadeScoreBool) return;
+
     yFadeLocation += 1;
     
     if (yFadeLocation >= 40){
-      fadeScore = false;
+      fadeScoreBool = false;
       showTempScore = false;
       yFadeLocation = 0;
       
