@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Elias Ramsberg</title>
+    <meta name="description" content="director's cut">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleMineSweeper.css">
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo"> 
+        <img class="logo" src="ramsberglogo001.png" alt="navbarlogo">
+      </a>
+      <nav>
+        <ul class="nav_links">
+          <li><a href="photos">Photos</a></li>
+          <li><a href="portfolio">Portfolio</a></li>
+          <li><a href="projects">Projects</a></li>
+        </ul>
+      </nav>
+      <a class="headerbutton" href="contact"><button class="buttontext">Contact</button></a>
+    </header>
+
+      <!--div class="content">
+        <h1>Welcome<br></br></h1>
+        <h2>website is WIP</h2>
+      </div-->
+
+      <!--div id="cover">
+        <img src="startmenu_ps.jpg">
+        <img src="startmenu_photo.jpg">
+        <img src="startmenu_gamedev.jpg">
+        <img src="startmenu_code.jpg">
+      </div-->
+  
+      <div id="cover">
+        <div 
+          class="board" 
+          id="board"> <!-- <div class="cell" data-cell></div> --> 
+        </div> 
+        <div 
+          class="winning-message" 
+          id="winningMessage"> 
+          <div id="winningMessageText"></div> 
+          <button id="restartButton">Restart</button> 
+        </div>
+      </div>
+
+      <div class="instructions">
+        <h1>Credit @ Vlad<br></br></h1>
+      </div>
+      
+      <script>
+        const FIELD = document.getElementById('board') 
+        const NUM_COLORS = ["#0000ff", "#008000", "#ff0000", "#000080", "#800000", "#008284", "#840084", "#757575"] 
+        class Square { constructor(width, id) 
+          { 
+            //this.x = x 
+            //this.y = y 
+            this.id = id 
+            this.y = Math.floor(id / width) 
+            this.x = id % width 
+            this.bomb = false 
+            this.number = 0 
+            const newDiv = document.createElement("div") 
+            // newDiv.innerText = this.number // 
+            newDiv.className = "cell" 
+            newDiv.id = this.id 
+            newDiv.addEventListener('click', this.squareClick, { once: true }) 
+            newDiv.addEventListener("contextmenu", this.squareRClick) 
+            FIELD.appendChild(newDiv) } 
+            showElement() { // returns bomb true or false 
+              const el = document.getElementById(this.id) 
+              el.innerText = this.number // TODO check if numver == 0 then empty 
+              el.style.color = NUM_COLORS[this.number-1] 
+              console.log(`clicked: ` + this.x + ", " + this.y + ". ID: " + this.id ) 
+              if (this.bomb == true) { 
+                el.className = "bombCell" 
+                el.innerText = "" 
+              } else { 
+                el.className = "clickedCell" 
+              }
+            } 
+            squareClick(ev) { 
+              const Sq = G.getSquareById(ev.target.id) // Still only gets an HTML element 
+              Sq.showElement() // el.target.className = "clickedCell" 
+            } 
+            squareRClick(ev) { 
+              const Sq = G.getSquareById(ev.target.id) 
+              ev.preventDefault() 
+              return false 
+            } 
+          } 
+          class Grid { 
+            constructor(width, height, bombs) { 
+              this.width = width 
+              this.height = height 
+              this.bombs = bombs 
+              this.grid = [] // Filling the grid 
+              //document.documentElement.style.setProperty('--columns', this.width); 
+              console.log(this.width) 
+              console.log(this.grid.length) 
+              let idx = 0 
+              for (let x = 0; x < this.width; x++) { 
+                let col = [] 
+                for (let y = 0; y < this.height; y++) { 
+                  col.push(new Square(width, idx)) 
+                  idx += 1 } this.grid.push(col) } 
+                  // Creating bombs 
+                  console.log(this.grid) 
+                  this.spawnBombs() // Updating numbers 
+                  for (let sqX = 0; sqX < this.width; sqX++) { 
+                    for (let sqY=0; sqY < this.height; sqY++) { // for each square 
+                      for (let x=0; x < this.width; x++) { 
+                        for (let y=0; y < this.height; y++) { 
+                          if (sqX-1 <= x && x <= sqX+1) { 
+                            if (sqY-1 <= y && y <= sqY+1) { 
+                              if (this.grid[x][y].bomb == true) { 
+                                this.grid[sqX][sqY].number += 1 
+                                console.log(`bomb ` + x + "," + y) 
+                                console.log(`id: ` + this.grid[x][y].id) 
+                                // this.grid[sqX][sqY].updateElement() 
+                                // sqX 0 
+                                // sqY 1 
+                                /* x 0 y 0 */ 
+                              } 
+                            } 
+                          } 
+                        } 
+                      } 
+                    } 
+                  } 
+                } 
+                spawnBombs(except = null) { 
+                  for (let i = 0; i < this.bombs;) { 
+                    const x = getRndInteger(0, this.width) 
+                    const y = getRndInteger(0, this.height) 
+                    if (this.grid[x][y].bomb == false) { // TODO: add an exception 
+                      this.grid[x][y].bomb = true 
+                      i++ 
+                    } 
+                  } 
+                } 
+                getSquareById(id) { 
+                  for (let x = 0; x < this.width; x++) { 
+                    for (let y = 0; y < this.height; y++) { 
+                      if (this.grid[x][y].id == id) { 
+                        return this.grid[x][y] 
+                      } 
+                    } 
+                  } 
+                }
+              } 
+              const G = new Grid(15, 15, 50) 
+              // Utility
+              function getRndInteger(min, max) { 
+                return Math.floor(Math.random() * (max - min)) + min; 
+              }
+                </script>
+
+      <footer>director's cut</footer>
+  </body>
+</html>
