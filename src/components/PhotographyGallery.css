@@ -1,0 +1,8 @@
+.photoGallery {
+    padding: 40px;
+    max-width: 100%;
+}
+
+.photoGallery img {
+    padding: 10px;
+}

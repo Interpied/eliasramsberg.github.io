@@ -1,0 +1,144 @@
+.gameList {
+  padding-bottom: 3rem;
+  background: #fff;
+}
+
+.gameList__container {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+.gameList__item {
+  display: block;
+  flex: 1;
+  width: 100%;
+  background: #e7efd5;
+  /* min-width: 45%;
+  align-items: center; */
+  /* border: 2px solid blue; */
+  padding: 40px 40px 40px 30px;
+}
+
+.spacer{
+  height:100px;
+}
+
+.gameList__wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.bigImgWrapper{
+  width: 51%;
+}
+
+.smallImgWrapper {
+  width: 20%;
+  padding-right: 0.5%;
+  height: 100%;
+}
+
+.descWrapper {
+  width:auto;
+  max-width: 25%;
+  border-top: 10px solid #ffffff;
+  border-bottom: 10px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.gameList__item__img1,
+.gameList__item__img2,
+.gameList__item__img3
+{
+  /* object-fit: cover; */
+  /* object-fit: cover; */
+  object-fit: contain;
+  padding-right: 2%;
+  border-radius: 0px;
+  align-items:stretch;
+}
+
+.gameList__item__img1 {
+  height: 100%;
+  width: 100%;
+}
+
+.gameList__item__img2 {
+  height: 50%;
+  width: 100%;
+  padding-bottom: 2%;
+}
+
+.gameList__item__img3 {
+  height: 50%;
+  width: 100%;
+
+}
+
+.gameList__item__title {
+  color: #333333;
+  font-size: 3.5rem;
+  line-height: 24px;
+  font-weight: 10px;
+  text-align: center;
+  padding-bottom: 60px;
+}
+
+.gameList__item__desc__title {
+  color: #333333;
+  font-size: 2rem;
+  line-height: 24px;
+  font-weight: 10px;
+  text-align: left;
+  padding-bottom: 15px;
+  padding-top: 10px;
+}
+
+.gameList__item__text {
+  color: #333333;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+  font-weight: 3;
+  height: 70%;
+  /* border: 2px solid red; */
+}
+
+.playButton {
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.playButton button {
+  background: #ffffff;
+  width: 30%;
+  height: 10%;
+  font-size: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 2px;
+  margin-left: 35%;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1200px) {
+  .content__blog__container {
+    width: 84%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .gameList__items {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .gameList__item {
+    margin-bottom: 2rem;
+  }
+}
